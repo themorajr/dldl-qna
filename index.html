@@ -14,6 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         
         .search-container {
@@ -24,6 +25,14 @@
             width: 100%;
             max-width: 800px;
             margin: 20px;
+            position: relative;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 340px;
+            height: 290px;
         }
 
         #searchInput {
@@ -91,12 +100,23 @@
             display: block;
             opacity: 0.8;
         }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="search-container">
+        <img src="https://dldl-sea-cycdn.lrgameglobal.com/static/images/pc/sl_logo.png" alt="Logo" class="logo">
         <input type="text" id="searchInput" placeholder="พิมพ์คำถามที่ต้องการค้นหา...">
         <div id="results"></div>
+    </div>
+    <div class="footer">
+        Created By "ละเมอ" Sv.27
     </div>
     <script src="qa.js"></script>
 </body>
