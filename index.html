@@ -12,11 +12,18 @@
             background-color: #f5f5f5;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
         }
-        
+
+        .logo {
+            display: block;
+            margin-bottom: 20px;
+            width: 340px;
+            height: 290px;
+        }
+
         .search-container {
             background-color: white;
             padding: 20px;
@@ -26,13 +33,6 @@
             max-width: 800px;
             margin: 20px;
             position: relative;
-        }
-
-        .logo {
-            display: block;
-            margin: 0 auto 20px auto;
-            width: 340px;
-            height: 290px;
         }
 
         #searchInput {
@@ -110,8 +110,8 @@
     </style>
 </head>
 <body>
+    <img src="https://dldl-sea-cycdn.lrgameglobal.com/static/images/pc/sl_logo.png" alt="Logo" class="logo">
     <div class="search-container">
-        <img src="https://dldl-sea-cycdn.lrgameglobal.com/static/images/pc/sl_logo.png" alt="Logo" class="logo">
         <input type="text" id="searchInput" placeholder="พิมพ์คำถามที่ต้องการค้นหา...">
         <div id="results"></div>
     </div>
