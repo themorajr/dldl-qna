@@ -302,10 +302,12 @@ function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function createThaiRegex(query) {
-    const words = query.match(/[\u0E00-\u0E7F]+/g) || [];
+function createSearchRegex(query) {
+    // Split into words, handling both Thai and English
+    const words = query.split(/\s+/).filter(word => word.length > 0);
     if (words.length === 0) return null;
     
+    // Create pattern for each word
     const pattern = words
         .map(word => `(${escapeRegExp(word)})`)
         .join('|');
@@ -326,28 +328,34 @@ function copyToClipboard(text) {
 }
 
 function searchQA(query) {
-    const regex = createThaiRegex(query);
+    const regex = createSearchRegex(query);
     if (!regex) return [];
 
-    return qaData.filter(item => 
-        regex.test(item.question) || regex.test(item.answer)
-    );
+    return qaData.filter(item => {
+        // Convert everything to lowercase for case-insensitive search
+        const lowercaseQuery = query.toLowerCase();
+        const lowercaseQuestion = item.question.toLowerCase();
+        const lowercaseAnswer = item.answer.toLowerCase();
+        
+        // Check if any word in the query matches
+        return regex.test(lowercaseQuestion) || regex.test(lowercaseAnswer);
+    });
 }
 
 function displayResults(results, query) {
     const resultsDiv = document.getElementById('results');
-    const regex = createThaiRegex(query);
+    const regex = createSearchRegex(query);
     
     if (results.length === 0) {
-        resultsDiv.innerHTML = '<div class="no-results">ไม่พบคำถามที่ตรงกับการค้นหา</div>';
+        resultsDiv.innerHTML = '<div class="no-results">ไม่พบคำถามที่ตรงกับการค้นหา / No matching results found</div>';
         return;
     }
 
     resultsDiv.innerHTML = results.map(item => `
-        <div class="result-item" onclick="copyToClipboard('${item.answer}')">
+        <div class="result-item" onclick="copyToClipboard('${item.answer.replace(/'/g, "\\'")}')">
             <div class="question">${regex ? highlightText(item.question, regex) : item.question}</div>
             <div class="answer">${regex ? highlightText(item.answer, regex) : item.answer}</div>
-            <span class="copy-feedback">คลิกเพื่อคัดลอก</span>
+            <span class="copy-feedback">คลิกเพื่อคัดลอก / Click to copy</span>
         </div>
     `).join('');
 }
