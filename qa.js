@@ -293,8 +293,8 @@ const qaData = [
         "answer": "Volt"
     },
     {
-        "question": "",
-        "answer": ""
+        "question": "ภูเขาที่สูงที่สุด",
+        "answer": "เอเวอเรสต์"
     },
 ];
 
