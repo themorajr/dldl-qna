@@ -5,6 +5,10 @@ const qaData = [
         "answer": "พลั่ว"
     },
     {
+        "question": "กษัตริย์องค์ใดครองราชย์ยาวนานที่สุด",
+        "answer": "เอลิซาเบธที่ 2"
+    },
+    {
         "question": "ชื่อทางการของเทพีเสรีภาพ",
         "answer": "เสรีภาพที่นำทางโลก"
     },
@@ -197,7 +201,7 @@ const qaData = [
         "answer": "วิกเตอร์ อูโก"
     },
     {
-        "question": "the catcher in the rye",
+        "question": "คนแต่ง the catcher in the rye",
         "answer": "ซาลิงเจอร์"
     },
     {
